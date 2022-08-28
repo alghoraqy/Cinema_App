@@ -2,6 +2,8 @@
 
 Movies and Series App with RESTful Api using Bloc pattern, Flutter Animation.
 
+App video: https://drive.google.com/file/d/1d6Nd-Ok6Ya_pAQOLqCXYc_bFDqb5Qt87/view?usp=sharing
+
 <img align="left" width="120" src="https://user-images.githubusercontent.com/88210924/187095325-50b96476-77c6-4b6a-8ca2-35a2962b4e7c.jpg">
 <img align="left" width="120" src="https://user-images.githubusercontent.com/88210924/187095343-532fc827-84b0-4934-a2a6-f610787534b0.jpg">
 <img align="left" width="120" src="https://user-images.githubusercontent.com/88210924/187095390-e1e2769f-735e-4bc4-807d-86ac19f9fa1b.jpg">

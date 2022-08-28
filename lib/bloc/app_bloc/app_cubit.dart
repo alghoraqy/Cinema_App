@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cinema_app/bloc/app_bloc/app_states.dart';
 import 'package:cinema_app/models/get_actor_model.dart';
 import 'package:cinema_app/models/movie_datails_model.dart';
@@ -8,6 +10,7 @@ import 'package:cinema_app/models/top_rated_model.dart';
 import 'package:cinema_app/shared/constances/end_points.dart';
 import 'package:cinema_app/shared/network/remote/dio_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(InitState());
@@ -112,6 +115,15 @@ class AppCubit extends Cubit<AppStates> {
       emit(GetPopulerSeiresSuccess());
     }).catchError((error) {
       emit(GetPopulerError(error.toString()));
+    });
+  }
+
+  bool connectionState = true;
+  Future<StreamSubscription<InternetConnectionStatus>> checkInternet() async {
+    return InternetConnectionChecker().onStatusChange.listen((event) {
+      final connection = event == InternetConnectionStatus.connected;
+      connectionState = connection;
+      emit(CheckInternetSuccess());
     });
   }
 }

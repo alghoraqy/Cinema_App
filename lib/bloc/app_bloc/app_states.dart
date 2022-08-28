@@ -61,3 +61,7 @@ class GetPopulerSeiresError extends AppStates {
   final String error;
   GetPopulerSeiresError(this.error);
 }
+
+class CheckInternetSuccess extends AppStates {}
+
+class CheckInternetError extends AppStates {}

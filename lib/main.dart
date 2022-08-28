@@ -1,4 +1,5 @@
 import 'package:cinema_app/bloc/app_bloc/app_cubit.dart';
+import 'package:cinema_app/bloc/app_bloc/app_states.dart';
 import 'package:cinema_app/module/splash/splash_screen.dart';
 import 'package:cinema_app/shared/constances/constances.dart';
 import 'package:cinema_app/shared/network/local/cach_helper.dart';
@@ -21,33 +22,45 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-            create: (context) => AppCubit()
-              ..getNowPlaying()
-              ..getTopRated()
-              ..getPopuler()
-              ..getOnTheAirSeries()
-              ..getTopRatedSeries()
-              ..getPopulerSeries()),
+        BlocProvider(create: (context) => AppCubit()..checkInternet()),
       ],
-      child: MaterialApp(
-        theme: ThemeData(
-            fontFamily: 'Poppins',
-            textTheme: const TextTheme(
-                headline1: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black),
-                headline2: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white),
-                button: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white))),
-        debugShowCheckedModeBanner: false,
-        home: const SplashScreen(),
+      child: BlocConsumer<AppCubit, AppStates>(
+        listener: (context, state) {
+          if (state is CheckInternetSuccess) {
+            AppCubit.get(context).getNowPlaying();
+            AppCubit.get(context).getTopRated();
+            AppCubit.get(context).getPopuler();
+            AppCubit.get(context).getOnTheAirSeries();
+            AppCubit.get(context).getTopRatedSeries();
+            AppCubit.get(context).getPopulerSeries();
+          }
+        },
+        builder: (context, state) {
+          return MaterialApp(
+            theme: ThemeData(
+                fontFamily: 'Poppins',
+                textTheme: const TextTheme(
+                    headline1: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black),
+                    headline2: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white),
+                    button: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white))),
+            debugShowCheckedModeBanner: false,
+            builder: (context, child) {
+              return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+                  child: child!);
+            },
+            home: const SplashScreen(),
+          );
+        },
       ),
     );
   }

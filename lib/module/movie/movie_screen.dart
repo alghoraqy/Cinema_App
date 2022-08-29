@@ -158,7 +158,7 @@ class MovieScreen extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                "Actor",
+                                translate(context, key: 'actor'),
                                 style: Theme.of(context).textTheme.headline2,
                               ),
                               SizedBox(

@@ -1,3 +1,4 @@
+import 'package:cinema_app/localizations/app_localizations.dart';
 import 'package:cinema_app/shared/constances/constances.dart';
 import 'package:cinema_app/shared/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -225,9 +226,9 @@ class TopRatedRow extends StatelessWidget {
           padding: EdgeInsets.zero,
           onPressed: seemoreOnPressed,
           child: Row(
-            children: const [
+            children: [
               Text(
-                'See More',
+                translate(context, key: 'seeMore'),
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w400,
@@ -532,4 +533,8 @@ class ActorItem extends StatelessWidget {
       ),
     );
   }
+}
+
+String translate(context, {required String key}) {
+  return AppLocalizations.of(context)!.translate(key);
 }

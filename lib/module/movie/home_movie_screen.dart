@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cinema_app/bloc/app_bloc/app_cubit.dart';
 import 'package:cinema_app/bloc/app_bloc/app_states.dart';
+import 'package:cinema_app/localizations/app_localizations.dart';
 import 'package:cinema_app/module/movie/movie_screen.dart';
 import 'package:cinema_app/module/movie/populer_movie_screen.dart';
 import 'package:cinema_app/module/movie/top_rated_movie_screen.dart';
@@ -64,41 +65,77 @@ class HomeMovieScreen extends StatelessWidget {
                             bottom: false,
                             child: Column(
                               children: [
-                                Center(
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.5,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        border: Border.all(
-                                            color: AppColors.basecolor)),
-                                    child: TabBar(
-                                      tabs: [
-                                        TabItem(
-                                          label: 'Movies',
-                                          color: cubit.ontab
-                                              ? Colors.grey.shade300
-                                              : Colors.white,
-                                          icon:
-                                              Icons.slow_motion_video_outlined,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1.5,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            border: Border.all(
+                                                color: AppColors.basecolor)),
+                                        child: TabBar(
+                                          tabs: [
+                                            TabItem(
+                                              label: translate(context,
+                                                  key: 'movies'),
+                                              color: cubit.ontab
+                                                  ? Colors.grey.shade300
+                                                  : Colors.white,
+                                              icon: Icons
+                                                  .slow_motion_video_outlined,
+                                            ),
+                                            TabItem(
+                                              label: translate(context,
+                                                  key: 'series'),
+                                              color: cubit.ontab
+                                                  ? Colors.white
+                                                  : Colors.grey.shade300,
+                                              icon: Icons.local_movies_outlined,
+                                            )
+                                          ],
+                                          indicatorColor: Colors.black,
+                                          indicatorSize:
+                                              TabBarIndicatorSize.label,
+                                          enableFeedback: false,
+                                          onTap: (index) {
+                                            cubit.changetab(index);
+                                          },
                                         ),
-                                        TabItem(
-                                          label: 'Series',
-                                          color: cubit.ontab
-                                              ? Colors.white
-                                              : Colors.grey.shade300,
-                                          icon: Icons.local_movies_outlined,
-                                        )
-                                      ],
-                                      indicatorColor: Colors.black,
-                                      indicatorSize: TabBarIndicatorSize.label,
-                                      enableFeedback: false,
-                                      onTap: (index) {
-                                        cubit.changetab(index);
-                                      },
+                                      ),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width /
+                                          50,
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          border: Border.all(
+                                              color: AppColors.basecolor)),
+                                      child: DropdownButtonHideUnderline(
+                                        child: DropdownButton<String>(
+                                            icon: Icon(
+                                                Icons.arrow_drop_down_rounded),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            alignment: Alignment.centerRight,
+                                            items: ['ar', 'en'].map((e) {
+                                              return DropdownMenuItem<String>(
+                                                  value: e, child: Text(e));
+                                            }).toList(),
+                                            value: 'ar',
+                                            onChanged: (value) {}),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(
                                   height: 10,
@@ -188,7 +225,8 @@ class HomeMovieScreen extends StatelessWidget {
                                                       height: 20,
                                                     ),
                                                     TopRatedRow(
-                                                      text: 'Top Rated',
+                                                      text: translate(context,
+                                                          key: 'Top_Rated'),
                                                       seemoreOnPressed: () {
                                                         navigateTo(context,
                                                             screen:
@@ -275,7 +313,8 @@ class HomeMovieScreen extends StatelessWidget {
                                                       height: 5,
                                                     ),
                                                     TopRatedRow(
-                                                      text: 'Popular',
+                                                      text: translate(context,
+                                                          key: 'populer'),
                                                       seemoreOnPressed: () {
                                                         navigateTo(context,
                                                             screen:
@@ -377,7 +416,7 @@ class HomeMovieScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'No Internet Connection',
+                            translate(context, key: 'noInternet'),
                             style: Theme.of(context).textTheme.headline1,
                           )
                         ],

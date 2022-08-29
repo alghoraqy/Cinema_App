@@ -1,11 +1,13 @@
 import 'package:cinema_app/bloc/app_bloc/app_cubit.dart';
 import 'package:cinema_app/bloc/app_bloc/app_states.dart';
+import 'package:cinema_app/localizations/app_localizations.dart';
 import 'package:cinema_app/module/splash/splash_screen.dart';
 import 'package:cinema_app/shared/constances/constances.dart';
 import 'package:cinema_app/shared/network/local/cach_helper.dart';
 import 'package:cinema_app/shared/network/remote/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             theme: ThemeData(
-                fontFamily: 'Poppins',
+                fontFamily: 'poppins',
                 textTheme: const TextTheme(
                     headline1: TextStyle(
                         fontSize: 25,
@@ -53,6 +55,25 @@ class MyApp extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         color: Colors.white))),
             debugShowCheckedModeBanner: false,
+            supportedLocales: const [
+              Locale('en'),
+              Locale('ar'),
+            ],
+            localizationsDelegates: [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            localeResolutionCallback: (devicelocal, supportedLocales) {
+              for (var locale in supportedLocales) {
+                if (devicelocal != null &&
+                    devicelocal.languageCode == locale.languageCode) {
+                  return devicelocal;
+                }
+              }
+              return supportedLocales.first;
+            },
             builder: (context, child) {
               return MediaQuery(
                   data: MediaQuery.of(context).copyWith(textScaleFactor: 1),

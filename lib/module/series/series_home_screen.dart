@@ -63,7 +63,7 @@ class HomeSeriesScreen extends StatelessWidget {
                 height: 20,
               ),
               TopRatedRow(
-                text: 'Top Rated',
+                text: translate(context, key: 'Top_Rated'),
                 seemoreOnPressed: () {
                   navigateTo(context, screen: const TopRatedSeriesScreen());
                 },
@@ -118,7 +118,7 @@ class HomeSeriesScreen extends StatelessWidget {
                 height: 5,
               ),
               TopRatedRow(
-                text: 'Popular',
+                text: translate(context, key: 'populer'),
                 seemoreOnPressed: () {
                   navigateTo(context, screen: const PopulerSeriesScreen());
                 },

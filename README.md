@@ -1,6 +1,6 @@
 # cinema_app
 
-Movies and Series App with RESTful Api using Bloc pattern,Localizations Flutter Animation.
+Movies and Series App with RESTful Api using Bloc pattern, Full Localizations(without packages), Flutter Animation.
 
 App video: https://drive.google.com/file/d/1d6Nd-Ok6Ya_pAQOLqCXYc_bFDqb5Qt87/view?usp=sharing
 

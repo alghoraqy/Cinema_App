@@ -127,16 +127,16 @@ class HomeMovieScreen extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                             alignment: Alignment.centerRight,
-                                            items: [
-                                              translate(context, key: "ar"),
-                                              'en'
-                                            ].map((e) {
+                                            items: ['ar', 'en'].map((e) {
                                               return DropdownMenuItem<String>(
                                                   value: e, child: Text(e));
                                             }).toList(),
-                                            value:
-                                                translate(context, key: "ar"),
-                                            onChanged: (value) {}),
+                                            value: languageCode ?? deviceLang,
+                                            onChanged: (value) {
+                                              if (value != null) {
+                                                cubit.changeLanguage(value);
+                                              }
+                                            }),
                                       ),
                                     ),
                                   ],

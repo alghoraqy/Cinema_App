@@ -7,8 +7,11 @@ import 'package:cinema_app/models/now_playing_model.dart';
 import 'package:cinema_app/models/on_the_air_model.dart';
 import 'package:cinema_app/models/populer_model.dart';
 import 'package:cinema_app/models/top_rated_model.dart';
+import 'package:cinema_app/shared/constances/constances.dart';
 import 'package:cinema_app/shared/constances/end_points.dart';
+import 'package:cinema_app/shared/network/local/language_cash_helper.dart';
 import 'package:cinema_app/shared/network/remote/dio_helper.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -124,6 +127,28 @@ class AppCubit extends Cubit<AppStates> {
       final connection = event == InternetConnectionStatus.connected;
       connectionState = connection;
       emit(CheckInternetSuccess());
+    });
+  }
+
+//////////////////  Localizations
+
+  // Locale? locale;
+  // void getLanguage() {
+  //   LanguageCashHelper.getLanguageCode().then((value) {
+  //     locale = Locale(value);
+  //     emit(GetLanguageCodeSucess());
+  //   }).catchError((error) {
+  //     print(error.toString());
+  //     emit(GetLanguageCodeError());
+  //   });
+  // }
+
+  void changeLanguage(String language) {
+    LanguageCashHelper.saveLanguageCode(language).then((value) {
+      languageCode = language;
+      emit(SaveLanguageCodeSucess());
+    }).catchError((error) {
+      emit(SaveLanguageCodeError());
     });
   }
 }

@@ -171,7 +171,7 @@ class NowPlaying extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  'Now Playing',
+                  translate(context, key: 'NowPlaying'),
                   style: Theme.of(context).textTheme.headline2,
                 ),
               ],

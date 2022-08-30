@@ -5,3 +5,7 @@ class AppConstances {
 }
 
 bool? onboard;
+
+String? languageCode;
+
+String? deviceLang;

@@ -1,9 +1,13 @@
 {
+    "NowPlaying": "Now Playing",
     "Top_Rated": "Top Rated",
     "populer":"Populer",
     "seeMore":"See More",
     "movies":"Movies",
     "series":"Series",
-    "noInterrnet":"No Internet Connection",
-    "actor":"Actor"
+    "noInternet":"No Internet Connection",
+    "actor":"Actor",
+    "ar":"ar",
+    "GetStarted": "Get Started"
+
 }

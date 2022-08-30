@@ -55,7 +55,7 @@ class OnBoarding extends StatelessWidget {
                     height: 20,
                   ),
                   MyButton(
-                      text: 'Get Started',
+                      text: translate(context, key: 'GetStarted'),
                       onPressed: () {
                         CachHelper.saveData(key: 'onBoarding', value: true)
                             .then((value) {

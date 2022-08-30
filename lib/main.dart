@@ -4,6 +4,7 @@ import 'package:cinema_app/localizations/app_localizations.dart';
 import 'package:cinema_app/module/splash/splash_screen.dart';
 import 'package:cinema_app/shared/constances/constances.dart';
 import 'package:cinema_app/shared/network/local/cach_helper.dart';
+import 'package:cinema_app/shared/network/local/language_cash_helper.dart';
 import 'package:cinema_app/shared/network/remote/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +14,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CachHelper.init();
   DioHelper.init();
+
+  languageCode = await LanguageCashHelper.getLanguageCode();
   onboard = CachHelper.getData(key: 'onBoarding');
   runApp(const MyApp());
 }
@@ -40,7 +43,7 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             theme: ThemeData(
-                fontFamily: 'poppins',
+                fontFamily: 'Aref Ruqaa',
                 textTheme: const TextTheme(
                     headline1: TextStyle(
                         fontSize: 25,
@@ -55,6 +58,7 @@ class MyApp extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         color: Colors.white))),
             debugShowCheckedModeBanner: false,
+            locale: languageCode != null ? Locale(languageCode!) : null,
             supportedLocales: const [
               Locale('en'),
               Locale('ar'),
@@ -69,6 +73,7 @@ class MyApp extends StatelessWidget {
               for (var locale in supportedLocales) {
                 if (devicelocal != null &&
                     devicelocal.languageCode == locale.languageCode) {
+                  deviceLang = devicelocal.languageCode;
                   return devicelocal;
                 }
               }

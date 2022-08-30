@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 abstract class AppStates {}
 
 class InitState extends AppStates {}
@@ -65,3 +67,11 @@ class GetPopulerSeiresError extends AppStates {
 class CheckInternetSuccess extends AppStates {}
 
 class CheckInternetError extends AppStates {}
+
+class GetLanguageCodeSucess extends AppStates {}
+
+class GetLanguageCodeError extends AppStates {}
+
+class SaveLanguageCodeSucess extends AppStates {}
+
+class SaveLanguageCodeError extends AppStates {}
